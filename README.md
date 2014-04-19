@@ -19,7 +19,6 @@ gulp dev  --runs a local dev project as /dev and http://localhost:9000
 
 ## Browser
 Revstack.appId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
-
 Revstack.id='id';
 
 //datastore
