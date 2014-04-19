@@ -23,6 +23,7 @@ Revstack.appId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 Revstack.id='id';
 
 //datastore
+
 revstack.token=sessionStorage.getItem('token');
 
 var revstack=new Revstack({token:token});
@@ -48,7 +49,6 @@ revstack.datastore.get({},'myClass',function(err,data){
 ## Node
 
 var revstack=require('revstack');
-
 Revstack.appId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 
 Revstack.id='id';
@@ -85,5 +85,5 @@ model.address='xxxx xxxxxxx xxxx';
 revstack.datastore.post(model,function(err,data){
 
    console.log(data);
-   
+
 });
