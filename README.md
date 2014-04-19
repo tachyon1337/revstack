@@ -18,14 +18,15 @@ gulp dev  --runs a local dev project as /dev and http://localhost:9000
 
 
 ## Browser
-Revstack.appId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
-Revstack.id='id';
+`Revstack.appId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';`
 
-//datastore
+`Revstack.id='id';`
 
-revstack.token=sessionStorage.getItem('token');
+`//datastore`
 
-var revstack=new Revstack({token:token});
+`revstack.token=sessionStorage.getItem('token');`
+
+`var revstack=new Revstack({token:token});`
 
 //get all
 
