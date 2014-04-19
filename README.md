@@ -28,13 +28,19 @@ revstack.token=sessionStorage.getItem('token');
 var revstack=new Revstack({token:token});
 
 //get all
+
 revstack.datastore.get({},'myClass',function(err,data){
+
    console.log(data);
+
 });
 
 //get by id
+
   revstack.datastore.get({id:xxxx},function(err,data){
+
   console.log(data);
+
 });
 
 
@@ -44,25 +50,40 @@ revstack.datastore.get({},'myClass',function(err,data){
 var revstack=require('revstack');
 
 Revstack.appId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
+
 Revstack.id='id';
+
 var revstack=new Revstack();
 
 
 //login
+
 revstack.user.login.get({
+
   username:'user',
+
   password:'pass'
+
  },function(err,data){
+
     console.log(data.token);
+
 });
 
 //post new model
+
 var revstack=new Revstack({token:token});
+
 var model=Object.create(null);
+
 model['@class']='MyClass';
+
 model.name='xxxx';
+
 model.address='xxxx xxxxxxx xxxx';
 
 revstack.datastore.post(model,function(err,data){
+
    console.log(data);
+   
 });
