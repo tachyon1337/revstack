@@ -9520,16 +9520,16 @@
         get: function (params,callback) {
             var appId = Revstack.appId;
             var token=this.token;
-            var endpoint,id;
+            var endpoint,username;
             var validateError = methods.validate(appId, params);
             if (validateError) {
                 if(callback){
                     callback(validateError, null);
                 }
             }else{
-                if(typeof params.username !== 'undefined'){
-                    id = encodeURIComponent(params["@rid"]);
-                    endpoint = '/membership/' + id;
+                if(typeof params.name !== 'undefined'){
+                    username = encodeURIComponent(params.name);
+                    endpoint = '/membership/' + username;
                     methods.send(token,endpoint,'GET',null,callback);
                 }else{
                     endpoint = '/membership';
@@ -9556,22 +9556,23 @@
         put: function (params, callback) {
             var appId = Revstack.appId;
             var token=this.token;
-            var id,endpoint1,endpoint2;
+            var username,endpoint1,endpoint2;
             var validateError = methods.validate(appId, params);
             if (validateError) {
                 if(callback){
                     callback(validateError, null);
                 }
             }else{
-                var obj = methods.validateId(params);
-                if (typeof obj.error !== 'undefined') {
-                    obj.error.message='PUT requires a user id and/or user data to update';
+                if (typeof params.name === 'undefined') {
+                    var error={};
+                    error.statusCode=400;
+                    error.message='PUT requires a username and/or user data to update';
                     if(callback){
-                        callback(obj.error,null);
+                        callback(error,null);
                     }
                 }else{
-                    id = encodeURIComponent(params.name);
-                    endpoint1='/membership/' + id;
+                    username = encodeURIComponent(params.name);
+                    endpoint1='/membership/' + username;
                     endpoint2 = '/membership';
                     methods.merge(token,endpoint1,endpoint2,'PUT',params,callback);
                 }
@@ -9581,22 +9582,23 @@
         patch: function (params, callback) {
             var appId = Revstack.appId;
             var token=this.token;
-            var id,endpoint1,endpoint2;
+            var username,endpoint1,endpoint2;
             var validateError = methods.validate(appId, params);
             if (validateError) {
                 if(callback){
                     callback(validateError, null);
                 }
             }else{
-                var obj = methods.validateId(params);
-                if (typeof obj.error !== 'undefined') {
-                    obj.error.message='PATCH requires a user id and/or user data to update';
+                if (typeof params.name === 'undefined') {
+                    var error={};
+                    error.statusCode=400;
+                    error.message='PUT requires a username and/or user data to update';
                     if(callback){
-                        callback(obj.error,null);
+                        callback(error,null);
                     }
                 }else{
-                    id = encodeURIComponent(params.name);
-                    endpoint1='/membership/' + id;
+                    username = encodeURIComponent(params.name);
+                    endpoint1='/membership/' + username;
                     endpoint2 = '/membership';
                     methods.merge(token,endpoint1,endpoint2,'PUT',params,callback);
                 }
@@ -9606,22 +9608,23 @@
         delete: function (params, callback) {
             var appId = Revstack.appId;
             var token=this.token;
-            var id,endpoint;
+            var username,endpoint;
             var validateError = methods.validate(appId, params);
             if (validateError) {
                 if(callback){
                     callback(validateError, null);
                 }
             }else{
-                var obj = methods.validateId(params);
-                if (typeof obj.error !== 'undefined') {
-                    obj.error.message='DELETE requires a user id to remove';
+                if (typeof params.name === 'undefined') {
+                    var error={};
+                    error.statusCode=400;
+                    error.message='DELETE requires a username';
                     if(callback){
-                        callback(obj.error, null);
+                        callback(error,null);
                     }
                 }else{
-                    id = encodeURIComponent(params.name);
-                    endpoint = '/membership/' + id;
+                    username = encodeURIComponent(params.name);
+                    endpoint = '/membership/' + username;
                     methods.send(token,endpoint,'DELETE',null,callback);
                 }
             }
@@ -10055,18 +10058,9 @@
                     callback(validateError, null);
                 }
             }else{
-                var obj = methods.validateId(params);
-                if (typeof obj.error !== 'undefined') {
-                    obj.error.message='PUT requires a user id and/or user data to update';
-                    if(callback){
-                        callback(obj.error,null);
-                    }
-                }else{
-                    id = encodeURIComponent(params["@rid"]);
-                    endpoint1='/user/' + id;
-                    endpoint2 = '/user';
-                    methods.merge(token,endpoint1,endpoint2,'PUT',params,callback);
-                }
+                endpoint1='/user';
+                endpoint2 = '/user';
+                methods.merge(token,endpoint1,endpoint2,'PUT',params,callback);
             }
         },
 
@@ -10080,17 +10074,8 @@
                     callback(validateError, null);
                 }
             }else{
-                var obj = methods.validateId(params);
-                if (typeof obj.error !== 'undefined') {
-                    obj.error.message='DELETE requires a user id to remove';
-                    if(callback){
-                        callback(obj.error, null);
-                    }
-                }else{
-                    id = encodeURIComponent(params["@rid"]);
-                    endpoint = '/user/' + id;
-                    methods.send(token,endpoint,'DELETE',null,callback);
-                }
+                endpoint = '/user';
+                methods.send(token,endpoint,'DELETE',null,callback);
             }
         },
 
